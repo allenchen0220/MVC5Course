@@ -36,12 +36,15 @@ namespace MVC5Course.Models
         [DisplayName("姓")]
         public string LastName { get; set; }
         [Required]
-        [RegularExpression("[MF]", ErrorMessage = "性別只能輸入M or F")]
+        [RegularExpression("[MF]", ErrorMessage = "{0}性別只能輸入M or F")]
         [DisplayName("性別")]
         public string Gender { get; set; }
         [DisplayName("生日")]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        [DisplayName("信用評等")]
+        [Range(1,9, ErrorMessage = "{0}信用評等1~9")]
         public Nullable<double> CreditRating { get; set; }
         public string XCode { get; set; }
         public Nullable<int> OccupationId { get; set; }
