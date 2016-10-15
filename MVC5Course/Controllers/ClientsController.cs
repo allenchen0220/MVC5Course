@@ -138,6 +138,17 @@ namespace MVC5Course.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Models.ViewModels.ClientLoginViewModel client)
+        {
+            return View("LoginResult", client);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
