@@ -37,8 +37,20 @@ namespace MVC5Course.Controllers
         public ActionResult Delete(int? id)
         {
             var product = db.Product.Find(id);
+
+            //db.OrderLine.Where(p => p.ProductId = id);
+            //product.OrderLine;
+            //錯誤示範
+            foreach (var item in product.OrderLine.ToList())
+            {
+                db.OrderLine.Remove(item);
+                db.SaveChanges();
+            }
+
+            db.OrderLine.RemoveRange(product.OrderLine);
+
             db.Product.Remove(product);
-            db.SaveChanges();
+            db.SaveChanges(); //做一次即可, 中間過程的CRUD都會是一次交易,失敗全部Rollback
 
             return RedirectToAction("Index");
         }
