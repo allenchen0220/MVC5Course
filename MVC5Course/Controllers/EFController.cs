@@ -1,4 +1,5 @@
 ﻿using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -87,25 +88,52 @@ namespace MVC5Course.Controllers
             return RedirectToAction("Index");
         }
 
+        //public ActionResult Add20Percent()
+        //{
+        //    var data = db.Product.Where(p => p.ProductName.Contains("White"));
+
+        //    foreach(var item in data)
+        //    {
+        //        if (item.Price.HasValue)
+        //        {
+        //            item.Price = item.Price.Value * 1.2m;
+        //        }
+        //    }
+
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
         public ActionResult Add20Percent()
         {
-            var data = db.Product.Where(p => p.ProductName.Contains("White"));
-            
-            foreach(var item in data)
-            {
-                if (item.Price.HasValue)
-                {
-                    item.Price = item.Price.Value * 1.2m;
-                }
-            }
+            string str = "%White%";
 
-            db.SaveChanges();
+            db.Database.ExecuteSqlCommand("Update dbo.Product Set Price=Price*1.2  WHERE ProductName LIKE @p0", str);
+
+
             return RedirectToAction("Index");
         }
 
         public ActionResult ClientContribution()
         {
             var data = db.vw_ClientOrderTotal.OrderByDescending(p => p.OrderTotal).Take(10).ToList();
+
+            return View(data);
+        }
+        public ActionResult ClientContribution2(string keyword = "Mary")
+        {
+            var data = db.Database.SqlQuery<ClientContributionViewModel>(@"
+                SELECT
+                    c.ClientId,
+                    c.FirstName,
+                    c.LastName,
+                    (   SELECT SUM(o.OrderTotal) 
+                        FROM [dbo].[Order] o 
+                        WHERE o.ClientId = c.ClientId) as OrderTotal
+                    FROM 
+                    [dbo].[Client] as c
+                    WHERE
+                    c.FirstName LIKE @p0", "%" + keyword + "%");
 
             return View(data);
         }
