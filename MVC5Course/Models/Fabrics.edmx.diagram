@@ -10,6 +10,7 @@
         <AssociationConnector Association="FabricsModel.fk_OrderLine_OrderId" ManuallyRouted="false" />
         <EntityTypeShape EntityType="FabricsModel.Product" Width="1.5" PointX="3.5" PointY="4.625" />
         <AssociationConnector Association="FabricsModel.fk_OrderLine_ProductId" />
+        <EntityTypeShape EntityType="FabricsModel.vw_ClientContribution" Width="1.5" PointX="7" PointY="1.875" />
       </Diagram>
       <Diagram DiagramId="93e3cac477b04236ad0782eeeae52955" Name="Client" >
         <EntityTypeShape EntityType="FabricsModel.Occupation" Width="1.5" PointX="0.75" PointY="0.75" />

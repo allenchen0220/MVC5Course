@@ -102,5 +102,12 @@ namespace MVC5Course.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult ClientContribution()
+        {
+            var data = db.vw_ClientOrderTotal.OrderByDescending(p => p.OrderTotal).Take(10).ToList();
+
+            return View(data);
+        }
     }
 }
