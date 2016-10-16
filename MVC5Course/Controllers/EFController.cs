@@ -104,6 +104,7 @@ namespace MVC5Course.Controllers
         //    return RedirectToAction("Index");
         //}
 
+        // 批次更新與效能調校
         public ActionResult Add20Percent()
         {
             string str = "%White%";
@@ -120,6 +121,8 @@ namespace MVC5Course.Controllers
 
             return View(data);
         }
+
+        //使用View
         public ActionResult ClientContribution2(string keyword = "Mary")
         {
             var data = db.Database.SqlQuery<ClientContributionViewModel>(@"
@@ -137,5 +140,11 @@ namespace MVC5Course.Controllers
 
             return View(data);
         }
+        //使用SP
+        public ActionResult ClientContribution3(string keyword = "Mary")
+        {
+            return View(db.usp_GetClientContribution(keyword));
+        }
+
     }
 }
