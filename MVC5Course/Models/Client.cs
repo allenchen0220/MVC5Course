@@ -11,9 +11,7 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Client
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,28 +21,11 @@ namespace MVC5Course.Models
         }
     
         public int ClientId { get; set; }
-        [Required]
-        [StringLength(10,ErrorMessage = "{0}最大長度不超過{1}個字元")]
-        [DisplayName("名")]
         public string FirstName { get; set; }
-        [Required]
-        [StringLength(10, ErrorMessage = "{0}最大長度不超過{1}個字元")]
-        [DisplayName("中間名")]
         public string MiddleName { get; set; }
-        [Required]
-        [StringLength(5, ErrorMessage = "{0}最大長度不超過{1}個字元")]
-        [DisplayName("姓")]
         public string LastName { get; set; }
-        [Required]
-        [RegularExpression("[MF]", ErrorMessage = "{0}性別只能輸入M or F")]
-        [DisplayName("性別")]
         public string Gender { get; set; }
-        [DisplayName("生日")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
-        [DisplayName("信用評等")]
-        [Range(1,9, ErrorMessage = "{0}信用評等1~9")]
         public Nullable<double> CreditRating { get; set; }
         public string XCode { get; set; }
         public Nullable<int> OccupationId { get; set; }
