@@ -4,16 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7176e3fe249f4b278b9486ff4924bc4a" Name="Diagram1">
-        <EntityTypeShape EntityType="FabricsModel.Client" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="FabricsModel.Occupation" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FabricsModel.Order" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FabricsModel.OrderLine" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
-        <AssociationConnector Association="FabricsModel.FK_Client_Occupation" ManuallyRouted="false" />
-        <AssociationConnector Association="FabricsModel.fk_Order_ClientId" ManuallyRouted="false" />
+      <Diagram DiagramId="7176e3fe249f4b278b9486ff4924bc4a" Name="Product">
+        <EntityTypeShape EntityType="FabricsModel.Order" Width="1.5" PointX="1.875" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricsModel.OrderLine" Width="1.5" PointX="5" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="FabricsModel.fk_OrderLine_OrderId" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="FabricsModel.Product" Width="1.5" PointX="5.375" PointY="6" />
+        <EntityTypeShape EntityType="FabricsModel.Product" Width="1.5" PointX="3.5" PointY="4.625" />
         <AssociationConnector Association="FabricsModel.fk_OrderLine_ProductId" />
+      </Diagram>
+      <Diagram DiagramId="93e3cac477b04236ad0782eeeae52955" Name="Client" >
+        <EntityTypeShape EntityType="FabricsModel.Occupation" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FabricsModel.Client" Width="1.5" PointX="4" PointY="0.5" />
+        <AssociationConnector Association="FabricsModel.FK_Client_Occupation" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
