@@ -36,6 +36,14 @@ namespace MVC5Course.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Edit(int id)
+        {
+            var product = db.Product.Find(id);
+            return View(product);
+
+        }
+
         public ActionResult Delete(int? id)
         {
             var product = db.Product.Find(id);
