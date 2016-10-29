@@ -10,10 +10,11 @@ namespace MVC5Course.Controllers
 {
     public class MBController : BaseController
     {
+        [Share頁上常用的ViewBag變數資料]
         // GET: MB
         public ActionResult Index()
         {
-            ViewData["Temp1"] = "暫存資料1";
+            //ViewData["Temp1"] = "暫存資料1";
 
             var b = new ClientLoginViewModel()
             {
@@ -26,7 +27,8 @@ namespace MVC5Course.Controllers
 
             return View();
         }
-
+      
+        [LocalDebugOnly]
         public ActionResult MyForm()
          {
              return View();
