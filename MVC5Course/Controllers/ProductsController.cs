@@ -17,7 +17,10 @@ namespace MVC5Course.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(repo.All().OrderByDescending(p =>p.ProductId).Take(10).ToList());
+            //var data = repo.All().OrderByDescending(p => p.ProductId).Take(10).ToList();
+            var data = repo.Get所有資料_依據ProductId排序(10);
+
+            return View(data);
         }
 
         // GET: Products/Details/5
@@ -114,7 +117,7 @@ namespace MVC5Course.Controllers
         {
             Product product = repo.Find(id);
             //db.Product.Remove(product);
-            product.Is刪除 = true;
+            repo.Delete(product);
             repo.UnitOfWork.Commit();
             //db.SaveChanges();
             return RedirectToAction("Index");
