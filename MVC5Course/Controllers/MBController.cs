@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -66,8 +67,22 @@ namespace MVC5Course.Controllers
 
                 }
 
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var vErrors in entityErrors.ValidationErrors)
+                        {
+                            throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤:" + vErrors.ErrorMessage);
+                        }
+                    }
 
+                }
+ 
                 return RedirectToAction("ProductList");
             }            
             return View();
