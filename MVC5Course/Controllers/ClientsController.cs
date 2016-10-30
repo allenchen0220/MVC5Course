@@ -31,7 +31,7 @@ namespace MVC5Course.Controllers
 
             var options = (from p in db.Client select p.CreditRating).Distinct().OrderBy(p=>p.Value).ToList();
             ViewBag.CreditRating = new SelectList(options);
-            ViewBag.Gender = new SelectList(new string[] { "M", "F" });
+            ViewBag.Gender = new SelectList(new string[] { "M", "F" }, "F");
 
             return View(client); 
 
