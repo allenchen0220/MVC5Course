@@ -8,6 +8,8 @@ using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
+    [HandleError(ExceptionType = typeof(DbEntityValidationException),
+        View = "Error_DbEntityValidationException")]
     public class MBController : BaseController
     {
         [Share頁上常用的ViewBag變數資料]
@@ -57,7 +59,7 @@ namespace MVC5Course.Controllers
 
         public ActionResult BatchUpdate(ProductBatchUpdateViewModel[] items)
         {
-            if(ModelState.IsValid)
+            //if(ModelState.IsValid)
             {
                 foreach(var item in items)
                 {
@@ -69,21 +71,23 @@ namespace MVC5Course.Controllers
 
                 }
 
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var entityErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var vErrors in entityErrors.ValidationErrors)
-                        {
-                            throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤:" + vErrors.ErrorMessage);
-                        }
-                    }
+                db.SaveChanges();
 
-                }
+                //try
+                //{
+                //    db.SaveChanges();
+                //}
+                //catch (DbEntityValidationException ex)
+                //{
+                //    foreach (var entityErrors in ex.EntityValidationErrors)
+                //    {
+                //        foreach (var vErrors in entityErrors.ValidationErrors)
+                //        {
+                //            throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤:" + vErrors.ErrorMessage);
+                //        }
+                //    }
+
+                //}
  
                 return RedirectToAction("ProductList");
             }            
