@@ -58,7 +58,7 @@
             @Html.DisplayFor(model => model.CreditRating)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.XCode)
         </dt>
 
@@ -136,10 +136,17 @@
 
         <dd>
             @Html.DisplayFor(model => model.Occupation.OccupationName)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
+
+<h3>Html Action Demo</h3>
+@Html.Action("Index","Orders", new {ClientId= Model.ClientId })
+
+<h3>Html Partial Demo</h3>
+@Html.Partial("../Orders/Index", Model.Order.ToList())
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ClientId }) |
     @Html.ActionLink("Back to List", "Index")
