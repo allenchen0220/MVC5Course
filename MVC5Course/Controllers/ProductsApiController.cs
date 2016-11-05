@@ -25,8 +25,26 @@ namespace MVC5Course.Controllers
         {
             return db.Product;
         }
+        [Route("prods/{id}/orderlines")]
+        // GET: prods/1554/orderlines
+        [ResponseType(typeof(Product))]
+        public IHttpActionResult GetProductOrderlines(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            Product product = db.Product.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+
+            return Ok(db.OrderLine.Where(p => p.ProductId == id).ToList());
+        }
+
+
 
         // GET: api/ProductsApi/5
+        [Route("prods/{id}")]
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {
