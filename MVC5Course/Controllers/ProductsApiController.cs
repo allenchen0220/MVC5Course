@@ -31,14 +31,14 @@ namespace MVC5Course.Controllers
         public IHttpActionResult GetProductOrderlines(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            Product product = db.Product.Find(id);
+            Product product = db.Product.Include("OrderLine").FirstOrDefault(p => p.ProductId == id);
             if (product == null)
             {
                 return NotFound();
             }
             
 
-            return Ok(db.OrderLine.Where(p => p.ProductId == id).ToList());
+            return Ok(product.OrderLine.ToList());
         }
 
 
