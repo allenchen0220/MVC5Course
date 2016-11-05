@@ -68,7 +68,16 @@
 @Html.PagedListPager(Model as IPagedList, (p)=>Url.Action("Index", new { pageNo=p}))
 
 <div id="details"></div>
+
 @section Scripts {
 
+@{
+    ViewBag.Msg = @"123';
+alert('XSS');//123";
+}
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>">
+    <script>
+        var str = '@Ajax.JavaScriptStringEncode(ViewBag.Msg)';
+        console.log(str);
+    </script>
 }
